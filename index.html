@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>solo central.. v5</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #0a0a23;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Nunito', sans-serif;
+    }
+    .container {
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding-left: 0;
+    }
+    .title {
+      text-align: center;
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 0.5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.7em;
+    }
+    .plain-blue {
+      color: #00aaff;
+    }
+    .rainbow-glow {
+      background: linear-gradient(270deg, #ff0080, #7928ca, #00cfff, #00ff94, #ffe600, #ff0080);
+      background-size: 1200% 1200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      animation: rainbow-spin 3s linear infinite, pulse-glow 1.5s ease-in-out infinite;
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
+    }
+    @keyframes rainbow-spin {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff; }
+      50% { text-shadow: 0 0 30px #fff, 0 0 60px #fff, 0 0 120px #fff; }
+    }
+    .subtitle {
+      color: #fff;
+      font-size: 1.5rem;
+      margin-bottom: 1em;
+      text-align: center;
+    }
+    .countdown {
+      color: #fff;
+      font-size: 2rem;
+      font-family: monospace;
+      text-align: center;
+      margin-top: 0.5em;
+    }
+    .side-gif {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-right: 0.7em;
+      box-shadow: none;
+    }
+    .wait-section {
+      margin-top: 2.5em;
+      width: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .wait-text {
+      color: #fff;
+      font-size: 1.4rem;
+      margin-bottom: 1.2em;
+      text-align: center;
+      font-weight: 600;
+    }
+    .play-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #00aaff, #00ff94);
+      color: #0a0a23;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 0.7em 2.2em;
+      border: none;
+      border-radius: 2em;
+      text-decoration: none;
+      box-shadow: 0 2px 16px #00aaff44;
+      transition: background 0.2s, color 0.2s, transform 0.1s;
+      cursor: pointer;
+    }
+    .play-btn:hover {
+      background: linear-gradient(90deg, #00ff94, #00aaff);
+      color: #fff;
+      transform: translateY(-2px) scale(1.04);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">
+      <img src="q.gif" alt="qatual" class="side-gif">
+      <span class="plain-blue">solo central</span> <span class="rainbow-glow">v5</span>
+    </div>
+    <div class="subtitle">coming in...</div>
+    <div class="countdown" id="countdown"></div>
+    <div class="wait-section">
+      <div class="wait-text">while you wait, go play v4!</div>
+      <a href="https://solocentral.lol" class="play-btn" target="_blank" rel="noopener">play now</a>
+    </div>
+  </div>
+  <script>
+    const countDownDate = new Date("Aug 18, 2025 01:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+      if (distance < 0) {
+        countdownEl.innerHTML = "soloo is publishing now.....";
+        return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
