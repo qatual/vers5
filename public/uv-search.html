@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>uv - solo central v5</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet" />
+  <style>
+    body { background: #111; color: #fff; margin: 0; }
+    .iframe-container { width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding-top: 0.5rem; }
+    .uv-search-bar { display: flex; justify-content: center; align-items: center; padding: 0.5rem 0 0.5rem 0; width: 100vw; }
+    .uv-search-bar input { width: 100vw; max-width: 100vw; padding: 0.9rem 1.2rem; border: none; border-radius: 0; background: #222; color: #fff; font-size: 1.2rem; }
+    iframe { width: 90vw; height: 80vh; border: none; border-radius: 12px; background: #222; box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #000; }
+    .logo { display: flex; align-items: center; }
+    .logo-img { width: 40px; height: 40px; margin-right: 0.5rem; }
+    ul { list-style: none; margin: 0; padding: 0; display: flex; }
+    li { margin-left: 1.5rem; }
+    .nav-icon img { width: 24px; height: 24px; }
+    body, input, button, h1, h2, h3, h4, h5, h6, nav, .logo, .nav-icon, .center-text, .uv-search-bar, .card, .motd, .gif-glow, .logo-img, ul, li, span, form {
+      font-family: 'Nunito', Arial, sans-serif !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
+  <nav>
+    <div class="logo">
+      <img src="/rizzy/q.gif" alt="Logo" class="logo-img" />
+      <span>solo central v5</span>
+    </div>
+    <ul>
+      <li>
+        <a href="index.html" class="nav-icon" title="Home">
+          <img src="/rizzy/house-solid.svg" alt="Home" />
+        </a>
+      </li>
+      <li>
+        <a href="games.html" class="nav-icon" title="Games">
+          <img src="/rizzy/gamepad-solid.svg" alt="Games" />
+        </a>
+      </li>
+      <li>
+        <a href="cool.html" class="nav-icon" title="Cool">
+          <img src="/rizzy/handshake-solid.svg" alt="Cool" />
+        </a>
+      </li>
+      <li>
+        <a href="creds.html" class="nav-icon active" title="credits">
+          <img src="/rizzy/tool.svg" alt="credits" />
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <form id="uv-search-form-top" class="uv-search-bar" action="/public/uv-search.html" method="GET" onsubmit="return handleUvSearchTop(event)">
+    <input type="text" name="q" id="uv-search-input-top" placeholder="Search or enter a URL..." required autocomplete="off" />
+  </form>
+  <div class="iframe-container">
+    <iframe id="uv-search-iframe" src="about:blank" allowfullscreen></iframe>
+  </div>
+  <script src="particles.js"></script>
+  <script>
+    function getQueryParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+    const q = getQueryParam('q');
+    if (q) {
+      document.getElementById('uv-search-iframe').src = '../service?q=' + encodeURIComponent(q);
+    }
+    function handleUvSearchTop(event) {
+      event.preventDefault();
+      const input = document.getElementById('uv-search-input-top').value.trim();
+      let url = input;
+      if (!/^https?:\/\//i.test(url) && /^[\w.-]+\.[a-z]{2,}(\/.*)?$/i.test(url)) {
+        url = 'https://' + url;
+      }
+      const isUrl = /^https?:\/\//i.test(url);
+      if (isUrl) {
+        window.location.href = `../service/gateway?url=${encodeURIComponent(url)}`;
+      } else {
+        window.location.href = `../public/uv-search.html?q=${encodeURIComponent(input)}`;
+      }
+      return false;
+    }
+    document.getElementById('uv-search-input-top').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        document.getElementById('uv-search-form-top').dispatchEvent(new Event('submit', {cancelable: true, bubbles: true}));
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1e1e1e;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 60px;
+    }
+    .left, .right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+    .left {
+      align-items: flex-start;
+    }
+    .right {
+      align-items: flex-end;
+    }
+    .logo {
+      width: 120px;
+      height: 120px;
+      background: url('/games/bowmasters/Build/unity.png') no-repeat center/contain;
+    }
+    .play-button {
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      background: #ffffff;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .play-button:hover {
+      transform: scale(1.05);
+    }
+    .info-line a {
+      color: #c7c7c7;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="left">
+    <div class="info-line">Developer: <a href="https://soloo.win" target="_blank">qatual</a></div>
+    <div class="info-line">Unity Version: 6.200.32</div>
+    <div class="info-line">Date Made: 7/4/2025</div>
+    <div class="info-line">Package Name: Bowmasters</div>
+    <div class="info-line">UnityID: 3592-94682-56892</div>
+    <div class="info-line">GameID: 289571987294</div>
+  </div>
+  <div class="right">
+    <div class="logo"></div>
+    <button class="play-button" onclick="location.href='/games/bowmasters/UnityPackage-c8686f7ew65f7s5d7f5e7f5s7d6gc7schj3fjh8r7yj3278eyjxd788hj782evyrnh283ybd783jc8e7dyj238dy8jy8s7dmvecdyjys8d7jjcdyc837ccdynhs78adyn8weycndscdzhjsd8nchn38cehnd.html'">Play</button>
+  </div>
+</body>
+</html>

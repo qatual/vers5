@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Games | Solo Central</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet" />
+  <style>
+    body, input, button, h1, h2, h3, h4, h5, h6, nav, .logo, .nav-icon, .center-text, .uv-search-bar, .card, .motd, .gif-glow, .logo-img, ul, li, span, form {
+      font-family: 'Nunito', Arial, sans-serif !important;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <img src="/rizzy/q.gif" alt="Logo" class="logo-img" />
+      <span>solo central v5</span>
+    </div>
+    <ul>
+      <li>
+        <a href="index.html" class="nav-icon" title="Home">
+          <img src="/rizzy/house-solid.svg" alt="Home" />
+        </a>
+      </li>
+      <li>
+        <a href="games.html" class="nav-icon" title="Games">
+          <img src="/rizzy/gamepad-solid.svg" alt="Games" />
+        </a>
+      </li>
+      <li>
+        <a href="cool.html" class="nav-icon" title="Cool">
+          <img src="/rizzy/handshake-solid.svg" alt="Cool" />
+        </a>
+      </li>
+      <li>
+        <a href="creds.html" class="nav-icon active" title="credits">
+          <img src="/rizzy/tool.svg" alt="credits" />
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
+  <script src="particles.js"></script>
+</body>
+<style>
+  .center-img-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    z-index: 1;
+    position: relative;
+  }
+  .center-img-link img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 0 24px 4px #00fff7aa;
+    transition: transform 0.18s, box-shadow 0.18s;
+    cursor: pointer;
+  }
+  .center-img-link img:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 48px 12px #00fff7;
+  }
+</style>
+<h2 style="text-align:center;color:#00fff7;font-size:2.2rem;font-weight:bold;margin-bottom:1.2rem;margin-top:3rem;position:relative;width:100vw;">Partners</h2>
+<div class="center-img-link">
+  <a href="https://github.com/poly-tainment/polytainment.github.io" target="_blank">
+    <img src="/rizzy/poly.png" alt="polytainment" />
+  </a>
+</div>
+</body>
+</html>

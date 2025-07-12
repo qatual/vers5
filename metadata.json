@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.premid.app/metadata/1.9",
+  "author": {
+    "name": "qatual",
+    "id": "1367572289142394910"
+  },
+  "service": "solo central",
+  "description": {
+    "en": "the games, for you."
+  },
+  "url": [
+    "solocentral.lol",
+    "soloo.gay",
+    "soloo.fun"
+  ],
+  "version": "1.0.0",
+  "logo": "https://i.ibb.co/gM07jHN1/solocentral.png",
+  "thumbnail": "https://i.ibb.co/gM07jHN1/solocentral.png",
+  "color": "#00aaff",
+  "category": "games",
+  "tags": [
+    "unblocked-games"
+  ]
+}

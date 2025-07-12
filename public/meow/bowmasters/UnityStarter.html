@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1e1e1e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .container {
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .fade-in {
+      opacity: 1;
+    }
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .logo {
+      width: 500px;
+      height: 500px;
+      background: url('/games/bowmasters/Build/unity-white-logo.png') no-repeat center/contain;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="logoContainer">
+    <div class="logo"></div>
+  </div>
+  <script>
+    const container = document.getElementById('logoContainer');
+    setTimeout(() => {
+      container.classList.add('fade-in');
+    }, 100);
+    setTimeout(() => {
+      container.classList.remove('fade-in');
+      container.classList.add('fade-out');
+    }, 2100);
+    setTimeout(() => {
+      window.location.href = "/games/bowmasters/UnityVerificationCheck.html";
+    }, 2600);
+  </script>
+</body>
+</html>

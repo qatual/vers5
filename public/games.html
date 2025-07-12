@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Games | Solo Central</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet" />
+  <style>
+    body, input, button, h1, h2, h3, h4, h5, h6, nav, .logo, .nav-icon, .center-text, .uv-search-bar, .card, .motd, .gif-glow, .logo-img, ul, li, span, form {
+      font-family: 'Nunito', Arial, sans-serif !important;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <img src="/rizzy/q.gif" alt="Logo" class="logo-img" />
+      <span>solo central v5</span>
+    </div>
+    <ul>
+      <li>
+        <a href="index.html" class="nav-icon" title="Home">
+          <img src="/rizzy/house-solid.svg" alt="Home" />
+        </a>
+      </li>
+      <li>
+        <a href="games.html" class="nav-icon" title="Games">
+          <img src="/rizzy/gamepad-solid.svg" alt="Games" />
+        </a>
+      </li>
+      <li>
+        <a href="cool.html" class="nav-icon" title="Cool">
+          <img src="/rizzy/handshake-solid.svg" alt="Cool" />
+        </a>
+      </li>
+      <li>
+        <a href="creds.html" class="nav-icon active" title="credits">
+          <img src="/rizzy/tool.svg" alt="credits" />
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <main>
+    <h2>Game Library</h2>
+    <input type="text" id="searchGames" placeholder="Search games..." />
+    <div class="container" id="gameList"></div>
+  </main>
+  <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
+  <script src="particles.js"></script>
+  <script>
+    const games = [
+      { name: "09", url: "./meow/09/index.html", bg: "../public/meow/09/splash.png" },
+      { name: "1v1lol", url: "./meow/1v1lol/index.html", bg: "../public/meow/1v1lol/splash.png" },
+      { name: "2048", url: "./meow/2048/index.html", bg: "../public/meow/2048/thumb.png" },
+      { name: "a-dance-of-fire-and-ice", url: "./meow/a-dance-of-fire-and-ice/index.html", bg: "../public/meow/a-dance-of-fire-and-ice/splash.png" },
+      { name: "among-us", url: "./meow/among-us/index.html", bg: "../public/meow/among-us/red.png" },
+      { name: "backrooms", url: "./meow/backrooms/index.html", bg: "../public/meow/backrooms/splash.png" },
+      { name: "badparenting", url: "./meow/badparenting/index.html", bg: "../public/meow/badparenting/splash.png" },
+      { name: "baldis-basics", url: "./meow/baldis-basics/index.html", bg: "../public/meow/baldis-basics/splash.png" },
+      { name: "basket-random", url: "./meow/basket-random/index.html", bg: "../public/meow/basket-random/splash.jpeg" },
+      { name: "bitlife", url: "./meow/bitlife/index.html", bg: "../public/meow/bitlife/splash.png" },
+      { name: "blockblast", url: "./meow/blockblast/index.html", bg: "../public/meow/blockblast/splash.webp" },
+      { name: "bloonstd", url: "./meow/bloonstd/index.html", bg: "../public/meow/bloonstd/bloonstd.jpg" },
+      { name: "bowmasters", url: "./meow/bowmasters/index.html", bg: "../public/meow/bowmasters/splash.png" },
+      { name: "btd5", url: "./meow/btd5/index.html", bg: "../public/meow/btd5/splash.png" },
+      { name: "buckshot", url: "./meow/buckshot/index.html", bg: "../public/meow/buckshot/splash.png" },
+      { name: "cc3d", url: "./meow/cc3d/index.html", bg: "../public/meow/cc3d/splash.png" },
+      { name: "cookie-clicker", url: "./meow/cookie-clicker/index.html", bg: "../public/meow/cookie-clicker/cookie1.jpeg" },
+      { name: "crazycar", url: "./meow/crazycar/index.html", bg: "../public/meow/crazycar/splash.png" },
+      { name: "csgo-clicker", url: "./meow/csgo-clicker/index.html", bg: "../public/meow/csgo-clicker/splash.png" },
+      { name: "dasnotmyneighbor", url: "./meow/dasnotmyneighbor/index.html", bg: "../public/meow/dasnotmyneighbor/splash.png" },
+      { name: "death-run-3d", url: "./meow/death-run-3d/index.html", bg: "../public/meow/death-run-3d/splash.png" },
+      { name: "deltarune", url: "./meow/deltarune/index.html", bg: "../public/meow/deltarune/splash.png" },
+      { name: "dokidoki", url: "./meow/dokidoki/index.html", bg: "../public/meow/dokidoki/splash.png" },
+      { name: "drift-boss", url: "./meow/drift-boss/index.html", bg: "../public/meow/drift-boss/splash.png" },
+      { name: "drift-hunters", url: "./meow/drift-hunters/index.html", bg: "../public/meow/drift-hunters/splash.png" },
+      { name: "drive-mad", url: "./meow/drive-mad/index.html", bg: "../public/meow/drive-mad/splash.png" },
+      { name: "ducklife1", url: "./meow/ducklife1/index.html", bg: "../public/meow/ducklife1/splash.png" },
+      { name: "eggycar", url: "./meow/eggycar/index.html", bg: "../public/meow/eggycar/splash.png" },
+      { name: "escaperoads2", url: "./meow/escaperoads2/index.html", bg: "../public/meow/escaperoads2/splash.png" },
+      { name: "fnaf", url: "./meow/fnaf/index.html", bg: "../public/meow/fnaf/splash.png" },
+      { name: "fortnite", url: "https://www.easyfun.gg/embed/fortnite-battle-royale-cloud-online.html", bg: "../public/meow/fortnite/splash.png" },
+      { name: "fruitninja", url: "./meow/fruitninja/index.html", bg: "../public/meow/fruitninja/splash.png" },
+      { name: "funmayhem", url: "./meow/funmayhem/index.html", bg: "../public/meow/funmayhem/splash.png" },
+      { name: "getaway-shootout", url: "./meow/getaway-shootout/index.html", bg: "../public/meow/getaway-shootout/splash.png" },
+      { name: "gta3", url: "./meow/gta3/index.html", bg: "../public/meow/gta3/splash.png" },
+      { name: "halflife", url: "./meow/halflife/index.html", bg: "../public/meow/halflife/splash.png" },
+      { name: "idle-breakout", url: "./meow/idle-breakout/index.html", bg: "../public/meow/idle-breakout/splash.png" },
+      { name: "jetpackjoyride", url: "./meow/jetpackjoyride/index.html", bg: "../public/meow/jetpackjoyride/splash.png" },
+      { name: "minecraft", url: "./meow/minecraft/index.html", bg: "../public/meow/minecraft/splash.png" },
+      { name: "MonkeyMart", url: "./meow/MonkeyMart/index.html", bg: "../public/meow/MonkeyMart/splash.png" },
+      { name: "peepplay", url: "./meow/peepplay/index.html", bg: "../public/meow/peepplay/splash.png" },
+      { name: "pizzatower", url: "./meow/pizzatower/index.html", bg: "../public/meow/pizzatower/splash.png" },
+      { name: "repo", url: "./meow/repo/index.html", bg: "../public/meow/repo/splash.png" },
+      { name: "roblox", url: "https://www.easyfun.gg/embed/roblox.html?start=1", bg: "../public/meow/roblox/splash.png" },
+      { name: "Rocket-League", url: "./meow/Rocket-League/index.html", bg: "../public/meow/Rocket-League/splash.png" },
+      { name: "solosadventures", url: "./404.html", bg: "../public/meow/solosadventures/splash.png" },
+      { name: "superhot", url: "./meow/superhot/index.html", bg: "../public/meow/superhot/splash.png" },
+      { name: "ultrakill", url: "./meow/ultrakill/index.html", bg: "../public/meow/ultrakill/splash.png" }
+    ];
+    const gameList = document.getElementById("gameList");
+    const searchInput = document.getElementById("searchGames");
+    function createCard(game) {
+      const card = document.createElement("div");
+      card.className = "card";
+      const img = document.createElement("img");
+      img.src = game.bg.startsWith('/') ? game.bg : '/' + game.bg;
+      img.alt = game.name;
+      img.style.width = "100%";
+      img.style.height = "100%";
+      img.style.objectFit = "cover";
+      img.style.borderRadius = "inherit";
+      card.appendChild(img);
+      card.title = game.name;
+      card.onclick = () => {
+        window.location.href = `meow.html?url=${encodeURIComponent(game.url)}&title=${encodeURIComponent(game.name)}`;
+      };
+      card.style.width = "220px";
+      card.style.height = "140px";
+      card.style.aspectRatio = "1.6/1";
+      card.style.minHeight = "120px";
+      card.style.minWidth = "176px";
+      card.style.maxWidth = "100%";
+      card.style.maxHeight = "28vw";
+      card.style.overflow = "hidden";
+      return card;
+    }
+    function displayGames(filter = "") {
+      gameList.innerHTML = "";
+      games.filter(game => game.name.toLowerCase().includes(filter.toLowerCase()))
+           .forEach(game => gameList.appendChild(createCard(game)));
+    }
+    searchInput.addEventListener("input", e => displayGames(e.target.value));
+    displayGames();
+  </script>
+</body>
+</html>

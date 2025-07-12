@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="https://cdn.jsdelivr.net/gh/bubbls/youtube-playables@main/bowmasters/">
+  <title>Bowmasters</title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-touch-fullscreen" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="msapplication-tap-highlight" content="no"/>
+  <meta name="MobileOptimized" content="960"/>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no, minimal-ui"/>
+  <meta charset="utf-8"/>
+
+  <link rel="stylesheet" type="text/css" href="style/index.css"/>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
+    }
+
+    #game {
+      width: 100%;
+      height: 100%;
+    }
+
+    #loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif") center center / cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: sans-serif;
+      z-index: 9999;
+      transition: opacity 1s ease;
+    }
+
+    #loading-gif {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 20px;
+    }
+
+    #loading-text {
+      font-size: 30px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 5px black;
+    }
+
+    #progress-bar-container {
+      width: 60%;
+      height: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px black;
+    }
+
+    #progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #ff3c00;
+      transition: width 0.3s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="loading-overlay">
+    <img id="loading-gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXZ5MzFpc3lpZHZva2kzZWh0eXNkYmZpaWVydnVuOWxubjNkYWx5cCZlcD12MV8y/gWLnOVjXolh5y/giphy.gif" alt="Loading...">
+    <div id="loading-text">Port by Qatual!</div>
+    <div id="progress-bar-container">
+      <div id="progress-bar"></div>
+    </div>
+  </div>
+
+  <div id="game"></div>
+
+  <script>
+    const overlay = document.getElementById("loading-overlay");
+    const progressBar = document.getElementById("progress-bar");
+
+    const steps = [4, 15, 22, 38, 44, 58, 67, 74, 83, 91, 97, 100];
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i >= steps.length) {
+        clearInterval(interval);
+        return;
+      }
+      progressBar.style.width = steps[i] + "%";
+      i++;
+    }, 950);
+
+    setTimeout(() => {
+      overlay.style.opacity = "0";
+      setTimeout(() => {
+        overlay.remove();
+        window.runGame();
+      }, 1000);
+    }, 11720);
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/gh/bubbls/youtube-playables@main/ytgame.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

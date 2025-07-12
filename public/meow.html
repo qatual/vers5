@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>solo central v5</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet" />
+  <style>
+    body, input, button, h1, h2, h3, h4, h5, h6, nav, .logo, .nav-icon, .center-text, .uv-search-bar, .card, .motd, .gif-glow, .logo-img, ul, li, span, form {
+      font-family: 'Nunito', Arial, sans-serif !important;
+    }
+    body { background: #111; color: #fff; margin: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .iframe-container { display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 3vh; position: relative; }
+    iframe { width: 800px; height: 540px; border: none; border-radius: 16px; background: #222; box-shadow: 0 4px 32px rgba(0,0,0,0.35); transition: width 0.3s, height 0.3s; z-index: 1; }
+    .controls { display: flex; gap: 2.5rem; margin-top: 2rem; }
+    .controls button { padding: 1rem 2.5rem; border-radius: 16px; border: none; background: #333; color: #fff; font-size: 1.3rem; cursor: pointer; transition: background 0.2s; }
+    .controls button:hover { background: #555; }
+    nav { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: rgba(0, 0, 0, 0.8); }
+    .logo { display: flex; align-items: center; }
+    .logo-img { width: 40px; height: 40px; margin-right: 0.5rem; }
+    nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
+    nav ul li { margin-left: 2rem; }
+    nav ul li a { display: flex; align-items: center; color: #fff; text-decoration: none; }
+    nav ul li a:hover { opacity: 0.8; }
+    #loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #10131a;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.4s;
+    }
+    .spinner {
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+    .dot {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background: #00fff7;
+      border-radius: 50%;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg) translateY(-48px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateY(-48px) rotate(-360deg); }
+    }
+    .dot:nth-child(1) { top: 0; left: 48px; animation: spin 1.2s linear infinite; }
+    .dot:nth-child(2) { top: 18px; left: 96px; width: 18px; height: 18px; animation: spin 1.2s linear infinite 0.15s; }
+    .dot:nth-child(3) { top: 48px; left: 120px; width: 14px; height: 14px; animation: spin 1.2s linear infinite 0.3s; }
+    .dot:nth-child(4) { top: 84px; left: 96px; width: 10px; height: 10px; animation: spin 1.2s linear infinite 0.45s; }
+    .dot:nth-child(5) { top: 102px; left: 48px; width: 8px; height: 8px; animation: spin 1.2s linear infinite 0.6s; }
+    .dot:nth-child(6) { top: 84px; left: 0px; width: 10px; height: 10px; animation: spin 1.2s linear infinite 0.75s; }
+    .dot:nth-child(7) { top: 48px; left: -24px; width: 14px; height: 14px; animation: spin 1.2s linear infinite 0.9s; }
+    .dot:nth-child(8) { top: 18px; left: 0px; width: 18px; height: 18px; animation: spin 1.2s linear infinite 1.05s; }
+    #loading-text {
+      color: #00fff7;
+      font-size: 1.5rem;
+      text-align: center;
+      max-width: 90vw;
+      margin-bottom: 0.5rem;
+    }
+    #skip-loading {
+      display: none;
+      margin-top: 2.5rem;
+      padding: 0.7rem 2.2rem;
+      border-radius: 12px;
+      border: none;
+      background: #00fff7;
+      color: #111;
+      font-size: 1.1rem;
+      font-family: 'Nunito', Arial, sans-serif;
+      cursor: pointer;
+      box-shadow: 0 0 12px 2px #00fff7;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
+  <nav>
+    <div class="logo">
+      <img src="/rizzy/q.gif" alt="Logo" class="logo-img" />
+      <span>solo central v5</span>
+    </div>
+    <ul>
+      <li>
+        <a href="index.html" class="nav-icon" title="Home">
+          <img src="/rizzy/house-solid.svg" alt="Home" />
+        </a>
+      </li>
+      <li>
+        <a href="games.html" class="nav-icon" title="Games">
+          <img src="/rizzy/gamepad-solid.svg" alt="Games" />
+        </a>
+      </li>
+      <li>
+        <a href="cool.html" class="nav-icon" title="Cool">
+          <img src="/rizzy/handshake-solid.svg" alt="Cool" />
+        </a>
+      </li>
+      <li>
+        <a href="creds.html" class="nav-icon active" title="credits">
+          <img src="/rizzy/tool.svg" alt="credits" />
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div id="loading-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#10131a;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity 0.4s;pointer-events:auto;">
+    <div class="spinner" style="width:120px;height:120px;display:flex;align-items:center;justify-content:center;margin-bottom:2.5rem;">
+      <div style="position:relative;width:100%;height:100%;">
+        <div class="dot" style="position:absolute;width:24px;height:24px;background:#ff0000;border-radius:50%;top:0;left:48px;animation:spin 1.2s linear infinite;"></div>
+        <div class="dot" style="position:absolute;width:18px;height:18px;background:#ffa600;border-radius:50%;top:18px;left:96px;animation:spin 1.2s linear infinite 0.15s;"></div>
+        <div class="dot" style="position:absolute;width:14px;height:14px;background:#e5ff00;border-radius:50%;top:48px;left:120px;animation:spin 1.2s linear infinite 0.3s;"></div>
+        <div class="dot" style="position:absolute;width:10px;height:10px;background:#00ff00;border-radius:50%;top:84px;left:96px;animation:spin 1.2s linear infinite 0.45s;"></div>
+        <div class="dot" style="position:absolute;width:8px;height:8px;background:#00fff7;border-radius:50%;top:102px;left:48px;animation:spin 1.2s linear infinite 0.6s;"></div>
+        <div class="dot" style="position:absolute;width:10px;height:10px;background:#8400ff;border-radius:50%;top:84px;left:0px;animation:spin 1.2s linear infinite 0.75s;"></div>
+        <div class="dot" style="position:absolute;width:14px;height:14px;background:#661940;border-radius:50%;top:48px;left:-24px;animation:spin 1.2s linear infinite 0.9s;"></div>
+        <div class="dot" style="position:absolute;width:18px;height:18px;background:#79560c;border-radius:50%;top:18px;left:0px;animation:spin 1.2s linear infinite 1.05s;"></div>
+      </div>
+    </div>
+    <div id="loading-text" style="color:#00fff7;font-size:1.5rem;text-align:center;max-width:90vw;margin-bottom:0.5rem;"></div>
+    <button id="skip-loading" style="display:none;margin-top:2.5rem;padding:0.7rem 2.2rem;border-radius:12px;border:none;background:#00fff7;color:#111;font-size:1.1rem;font-family:'Nunito',Arial,sans-serif;cursor:pointer;box-shadow:0 0 12px 2px #00fff7;">skip loading</button>
+  </div>
+  <script src="../public/loading-messages.js"></script>
+  <script>
+    function getRandomLoadingMessage() {
+      // Try both window.loadingMessages and just loadingMessages in case of scoping
+      var msgs = (window.loadingMessages && Array.isArray(window.loadingMessages) && window.loadingMessages.length > 0)
+        ? window.loadingMessages
+        : (typeof loadingMessages !== 'undefined' && Array.isArray(loadingMessages) && loadingMessages.length > 0)
+          ? loadingMessages
+          : null;
+      if (msgs) {
+        return msgs[Math.floor(Math.random() * msgs.length)];
+      }
+      return 'Loading...';
+    }
+    function showLoadingScreen() {
+      const overlay = document.getElementById('loading-overlay');
+      if (!overlay) return;
+      // Ensure skip button is hidden at start
+      const skipBtn = document.getElementById('skip-loading');
+      if (skipBtn) skipBtn.style.display = 'none';
+      // Set random message
+      const msg = getRandomLoadingMessage();
+      const loadingText = document.getElementById('loading-text');
+      if (loadingText) {
+        loadingText.textContent = msg;
+        loadingText.style.fontFamily = "'Nunito', Arial, sans-serif";
+      }
+      overlay.style.opacity = 1;
+      overlay.style.display = 'flex';
+      setTimeout(() => {
+        if (skipBtn) skipBtn.style.display = 'block';
+      }, 2000);
+      setTimeout(hideLoadingScreen, 5000);
+    }
+    function hideLoadingScreen() {
+      const overlay = document.getElementById('loading-overlay');
+      if (!overlay) return;
+      overlay.style.opacity = 0;
+      setTimeout(() => { overlay.style.display = 'none'; }, 400);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      var skipBtn = document.getElementById('skip-loading');
+      if (skipBtn) skipBtn.onclick = hideLoadingScreen;
+      showLoadingScreen();
+    });
+  </script>
+  <div class="iframe-container">
+    <iframe id="game-frame" src="about:blank" allowfullscreen style="z-index:1;"></iframe>
+    <div class="controls">
+      <button onclick="reloadIframe()">Reload</button>
+      <button onclick="fullscreenIframe()">Fullscreen</button>
+    </div>
+  </div>
+  <script src="../public/particles.js"></script>
+  <script>
+    function getQueryParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+    const url = getQueryParam('url');
+    const iframe = document.getElementById('game-frame');
+    if (url) {
+      iframe.src = url;
+      iframe.onerror = function() {
+        iframe.src = '404.html';
+      };
+      setTimeout(() => {
+        if (!iframe.contentWindow || iframe.contentDocument?.body?.innerHTML === '' || iframe.contentDocument?.readyState === 'uninitialized') {
+          iframe.src = '404.html';
+        }
+      }, 4000);
+    }
+    function reloadIframe() {
+      const iframe = document.getElementById('game-frame');
+      iframe.src = iframe.src;
+    }
+    function fullscreenIframe() {
+      const iframe = document.getElementById('game-frame');
+      if (iframe.requestFullscreen) {
+        iframe.requestFullscreen();
+      } else if (iframe.mozRequestFullScreen) {
+        iframe.mozRequestFullScreen();
+      } else if (iframe.webkitRequestFullscreen) {
+        iframe.webkitRequestFullscreen();
+      } else if (iframe.msRequestFullscreen) {
+        iframe.msRequestFullscreen();
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>solo central v5</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet" />
+  <style>
+    body, input, button, h1, h2, h3, h4, h5, h6, nav, .logo, .nav-icon, .center-text, .uv-search-bar, .card, .motd, .gif-glow, .logo-img, ul, li, span, form {
+      font-family: 'Nunito', Arial, sans-serif !important;
+    }
+    body { background: #111; color: #fff; margin: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .iframe-container { display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 3vh; }
+    iframe { width: 800px; height: 540px; border: none; border-radius: 16px; background: #222; box-shadow: 0 4px 32px rgba(0,0,0,0.35); transition: width 0.3s, height 0.3s; }
+    .controls { display: flex; gap: 2.5rem; margin-top: 2rem; }
+    .controls button { padding: 1rem 2.5rem; border-radius: 16px; border: none; background: #333; color: #fff; font-size: 1.3rem; cursor: pointer; transition: background 0.2s; }
+    .controls button:hover { background: #555; }
+    nav { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: rgba(0, 0, 0, 0.8); }
+    .logo { display: flex; align-items: center; }
+    .logo-img { width: 40px; height: 40px; margin-right: 0.5rem; }
+    nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
+    nav ul li { margin-left: 2rem; }
+    nav ul li a { display: flex; align-items: center; color: #fff; text-decoration: none; }
+    nav ul li a:hover { opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
+  <nav>
+    <div class="logo">
+      <img src="/rizzy/q.gif" alt="Logo" class="logo-img" />
+      <span>solo central v5</span>
+    </div>
+    <ul>
+      <li>
+        <a href="index.html" class="nav-icon" title="Home">
+          <img src="/rizzy/house-solid.svg" alt="Home" />
+        </a>
+      </li>
+      <li>
+        <a href="games.html" class="nav-icon" title="Games">
+          <img src="/rizzy/gamepad-solid.svg" alt="Games" />
+        </a>
+      </li>
+      <li>
+        <a href="cool.html" class="nav-icon" title="Cool">
+          <img src="/rizzy/handshake-solid.svg" alt="Cool" />
+        </a>
+      </li>
+      <li>
+        <a href="creds.html" class="nav-icon active" title="credits">
+          <img src="/rizzy/tool.svg" alt="credits" />
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="iframe-container">
+    <iframe id="game-frame" src="about:blank" allowfullscreen></iframe>
+    <div class="controls">
+      <button onclick="reloadIframe()">Reload</button>
+      <button onclick="fullscreenIframe()">Fullscreen</button>
+    </div>
+  </div>
+  <script src="particles.js"></script>
+  <div id="ad-banner" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:1000;margin-bottom:0;box-shadow:0 0 16px 2px rgba(0,123,255,0.25);border-radius:12px;">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : '267da591ba246de5dbc8093a3287f028',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//greetingsdaydreamlitre.com/267da591ba246de5dbc8093a3287f028/invoke.js"></script>
+  </div>
+  <div id="ad-banner-vert" style="position:fixed;bottom:24px;left:24px;z-index:1000;margin-bottom:0;box-shadow:0 0 16px 2px rgba(0,123,255,0.25);border-radius:12px;">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : '08430aa6d5721f44ca32e16571beaf78',
+        'format' : 'iframe',
+        'height' : 600,
+        'width' : 160,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//greetingsdaydreamlitre.com/08430aa6d5721f44ca32e16571beaf78/invoke.js"></script>
+  </div>
+  <script>
+    function getQueryParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+    const url = getQueryParam('url');
+    if (url) {
+      document.getElementById('game-frame').src = url;
+    }
+    function reloadIframe() {
+      const iframe = document.getElementById('game-frame');
+      iframe.src = iframe.src;
+    }
+    function fullscreenIframe() {
+      const iframe = document.getElementById('game-frame');
+      if (iframe.requestFullscreen) {
+        iframe.requestFullscreen();
+      } else if (iframe.mozRequestFullScreen) {
+        iframe.mozRequestFullScreen();
+      } else if (iframe.webkitRequestFullscreen) {
+        iframe.webkitRequestFullscreen();
+      } else if (iframe.msRequestFullscreen) {
+        iframe.msRequestFullscreen();
+      }
+    }
+  </script>
+</body>
+</html>
